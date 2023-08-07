@@ -97,13 +97,8 @@ public class LoginTest {
 
     @Then("User is on My Account page")
     public void user_is_on_my_account_page() {
-        boolean myDashboardPage = true;
-        try {
-            WebElement dashboardElement = webDriver.findElement(By.className(myAccContent));
-        } catch (WebDriverException e) {
-            myDashboardPage = false;
-        }
-        Assertions.assertTrue(myDashboardPage,
+        WebElement dashboardElement = webDriver.findElement(By.className(myAccContent));
+        Assertions.assertTrue(dashboardElement.isDisplayed(),
                 "User is not registered and logged in, or My dashboard page is not displayed!");
     }
 }
