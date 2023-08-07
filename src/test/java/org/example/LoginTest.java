@@ -57,8 +57,8 @@ public class LoginTest {
 
     @Given("Login section is available on page")
     public void login_section_is_available_on_page() {
-        WebElement registerSection = webDriver.findElement(By.xpath(logSection));
-        Assertions.assertTrue(registerSection.isDisplayed(),
+        WebElement loginSection = webDriver.findElement(By.xpath(logSection));
+        Assertions.assertTrue(loginSection.isDisplayed(),
                 "Register section is not available!");
     }
 

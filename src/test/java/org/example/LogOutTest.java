@@ -21,8 +21,10 @@ public class LogOutTest {
     public static WebDriver webDriver;
     private static final String myAccUrl = "https://practice.automationtesting.in/my-account/";
     private static final String logButton = "//*[@id=\"customer_login\"]/div[1]/form/p[3]/input[3]";
-    private static final String logOutButton = "//*[@id=\"page-36\"]/div/div[1]/nav/ul/li[6]";
+    private static final String logOutButton = "//*[@id=\"page-36\"]/div/div[1]/nav/ul/li[6]/a";
     private static final String error = "woocommerce-error";
+    private static final String regSection = "//*[@id=\"customer_login\"]/div[2]";
+    private static final String logSection = "//*[@id=\"customer_login\"]/div[1]";
 
     @BeforeAll
     public static void initiate() {
@@ -73,25 +75,24 @@ public class LogOutTest {
 
     @When("the logout button is clicked")
     public void the_logout_button_is_clicked() {
-        boolean logoutButtonIsClicked = true;
-        WebElement logoutButton = webDriver.findElement(By.xpath(logOutButton));
         try {
-            WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(5));
-            wait.until(ExpectedConditions.elementToBeClickable(logoutButton));
-            logoutButton.click();
-        } catch (WebDriverException e) {
-            logoutButtonIsClicked = false;
+            WebElement outButton = webDriver.findElement(By.xpath(logOutButton));
+            outButton.click();
+            Thread.sleep(1000);
+        } catch (InterruptedException ignored) {
         }
-        Assertions.assertTrue(logoutButtonIsClicked, "The logout button was not clocked!");
     }
     @Then("the user is logged out")
     public void the_user_is_logged_out() {
-        boolean loggedOut = true;
         try {
-            webDriver.findElement(By.xpath(myAccUrl));
-            loggedOut = false;
-        } catch (WebDriverException e) {
-        }
-        Assertions.assertTrue(loggedOut, "The user was not logged out!");
+            WebElement registerSection = webDriver.findElement(By.xpath(regSection));
+            Assertions.assertTrue(registerSection.isDisplayed(),
+                "Register section is not available!");
+            WebElement loginSection = webDriver.findElement(By.xpath(logSection));
+            Assertions.assertTrue(loginSection.isDisplayed(),
+                "Register section is not available!");
+            Thread.sleep(1000);
+    } catch (InterruptedException ignored) {
+    }
     }
 }
