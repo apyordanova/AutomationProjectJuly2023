@@ -24,7 +24,6 @@ public class RegistrationTest {
     private static final String regEmail = "//*[@id=\"reg_email\"]";
     private static final String regPass = "//*[@id=\"reg_password\"]";
     private static final String regButton = "//*[@id=\"customer_login\"]/div[2]/form/p[3]/input[3]";
-    private static final String error = "//*[@id=\"page-36\"]/div/div[1]/ul";
     private static final String myAccContent = "woocommerce-MyAccount-content";
 
 
