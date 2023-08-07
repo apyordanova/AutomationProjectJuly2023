@@ -92,7 +92,7 @@ public class LogOutTest {
             Assertions.assertTrue(loginSection.isDisplayed(),
                 "Register section is not available!");
             Thread.sleep(1000);
-    } catch (InterruptedException ignored) {
-    }
+        } catch (InterruptedException ignored) {
+        }
     }
 }

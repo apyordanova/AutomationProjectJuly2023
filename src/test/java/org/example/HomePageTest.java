@@ -1,5 +1,6 @@
 package org.example;
 
+import com.sun.jna.WString;
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.BeforeAll;
 import io.cucumber.java.en.*;
@@ -21,9 +22,10 @@ public class HomePageTest {
 
     public static WebDriver webDriver;
     private static final String homePageUrl = "https://practice.automationtesting.in/";
-    private static final String myAcc = "//*[@id=\"menu-item-50\"]/a";
+    private static final String myAccButton = "//*[@id=\"menu-item-50\"]/a";
     private static final String slider = "//*[@id=\"n2-ss-6\"]/div[1]/div/div";
     private static final String children = "./child::*";
+    private static final String myAccUrl = "https://practice.automationtesting.in/my-account/";
 
 
 
@@ -103,38 +105,18 @@ public class HomePageTest {
 
     @When("my account button is clicked")
     public void my_account_button_is_clicked() {
-        boolean buttonIsActive;
-        WebElement myAccount = webDriver.findElement(By.xpath(myAcc));
-        try {
-            WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(5));
-            wait.until(ExpectedConditions.elementToBeClickable(myAccount));
-            buttonIsActive = true;
-        } catch (WebDriverException e) {
-            buttonIsActive = false;
-        }
-        Assertions.assertTrue(buttonIsActive, "The button is not clickable!");
+        WebElement myAccount = webDriver.findElement(By.xpath(myAccButton));
         myAccount.click();
     }
 
     @Then("we move to the next page")
     public void we_move_to_the_next_page() {
-        /*
-        Original code:
-           Assertions.assertNotEquals(
-                webDriver.getCurrentUrl().trim(),
-                homePageUrl,
-                "Still on the Home Page!"
-        Found a mistake in the given code as the Assertion structure should be first Expected value,
-        followed by Actual value, and lastly by the string message.
-        In the given code above variables are listed: Actual value, Expected value, string message.
-
-        To be more precise that the user is actually on My Account page after clicking on the My Account button
-        introducing the variable myAccUrl with it's value, and checking that user is on this exact page.
-        The code above was Replaced by the following solution:
-        */
-        String myAccUrl = "https://practice.automationtesting.in/my-account/";
-        Assertions.assertEquals(myAccUrl,
-                webDriver.getCurrentUrl().trim(),
-                "Still on the Home Page!");
+        try {
+            Assertions.assertEquals(myAccUrl,
+                    webDriver.getCurrentUrl().trim(),
+                    "Still on the Home Page!");
+            Thread.sleep(1000);
+        } catch (InterruptedException ignored) {
+        }
     }
 }

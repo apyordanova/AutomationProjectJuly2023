@@ -70,13 +70,6 @@ public class LoginTest {
                 "Register input fields are not present!");
     }
 
-    @When("Login button is clickable")
-    public void login_button_is_clickable() {
-        WebElement logInButton = webDriver.findElement(By.xpath(logButton));
-        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.elementToBeClickable(logInButton));
-    }
-
     @Then("send input for Email address")
     public void send_input_for_email_address() {
         WebElement emailField = webDriver.findElement(By.xpath(logEmail));

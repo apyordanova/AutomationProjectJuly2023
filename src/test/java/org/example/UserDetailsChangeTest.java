@@ -122,26 +122,20 @@ public class UserDetailsChangeTest {
         }
     }
 
-    @Then("the user can enter data in the fields")
-    public void the_user_can_enter_data_in_the_fields() {
+    @Then("the user enters data in the fields")
+    public void the_user_enters_data_in_the_fields() {
         // Assuming the IDs of the First and Last Name fields are "first_name" and "last_name"
         try {
             WebElement firstNameField = webDriver.findElement(By.id("account_first_name"));
             WebElement lastNameField = webDriver.findElement(By.id("account_last_name"));
 
-            firstNameField.sendKeys("Ivan");
-            lastNameField.sendKeys("Ivanov");
+            firstNameField.sendKeys("Ivan1");
+            lastNameField.sendKeys("Ivanov1");
             Thread.sleep(1000);
         } catch (InterruptedException ignored) {
         }
     }
 
-    @When("Save button is clickable")
-    public void save_button_is_clickable() {
-        WebElement saveButton = webDriver.findElement(By.className(saveChangesButton));
-        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.elementToBeClickable(saveButton));
-    }
     @Then("save button is actioned")
     public void save_button_is_actioned() {
         try {

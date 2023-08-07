@@ -10,7 +10,6 @@ Feature: As a User I would like to be able to view and change the data on My Det
   correct in the input boxes, and save.
     Given the fields for First and Last name are present
     When fields are cleared
-    Then the user can enter data in the fields
-    When Save button is clickable
+    Then the user enters data in the fields
     Then save button is actioned
     Then data is saved

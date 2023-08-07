@@ -25,6 +25,7 @@ public class RegistrationTest {
     private static final String regPass = "//*[@id=\"reg_password\"]";
     private static final String regButton = "//*[@id=\"customer_login\"]/div[2]/form/p[3]/input[3]";
     private static final String error = "//*[@id=\"page-36\"]/div/div[1]/ul";
+    private static final String myAccContent = "woocommerce-MyAccount-content";
 
 
 
@@ -54,6 +55,7 @@ public class RegistrationTest {
         Assertions.assertEquals(myAccUrl,
                 webDriver.getCurrentUrl().trim(),
                 "Still on the Home Page!");
+
         }
 
     @Given("Register section is available on page")
@@ -68,12 +70,6 @@ public class RegistrationTest {
         WebElement passwordField = webDriver.findElement(By.xpath(regPass));
         Assertions.assertTrue(emailField.isDisplayed() && passwordField.isDisplayed(),
                 "Register input fields are not present!");
-    }
-    @When("Register button is clickable")
-    public void register_button_is_clickable() {
-        WebElement registerButton = webDriver.findElement(By.xpath(regButton));
-        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.elementToBeClickable(registerButton));
     }
 
     @Then("send existing input for Email address")
@@ -91,12 +87,17 @@ public class RegistrationTest {
     public void click_on_register_button() {
         WebElement registerButton = webDriver.findElement(By.xpath(regButton));
         registerButton.click();
+
     }
 
-    @Then ("error message is displayed")
-    public void error_message_is_displayed() {
-        WebElement errorMessage = webDriver.findElement(By.xpath(error));
-        Assertions.assertTrue(errorMessage.isDisplayed(),
-                "Error message was not displayed");
+    @Then("User is on My Account page")
+    public void user_is_on_my_account_page() {
+        try {
+            WebElement dashboardElement = webDriver.findElement(By.className(myAccContent));
+            Assertions.assertTrue(dashboardElement.isDisplayed(),
+                "User is not registered and logged in, or My dashboard page is not displayed!");
+            Thread.sleep(1000);
+        } catch (InterruptedException ignored) {
+    }
     }
 }
