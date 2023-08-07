@@ -24,7 +24,7 @@ public class RegistrationTest {
     private static final String regEmail = "//*[@id=\"reg_email\"]";
     private static final String regPass = "//*[@id=\"reg_password\"]";
     private static final String regButton = "//*[@id=\"customer_login\"]/div[2]/form/p[3]/input[3]";
-    private static final String myAccContent = "woocommerce-MyAccount-content";
+    private static final String error = "//*[@id=\"page-36\"]/div/div[1]/ul";
 
 
 
@@ -93,10 +93,10 @@ public class RegistrationTest {
         registerButton.click();
     }
 
-    @Then ("User is on Dashboard page")
-    public void user_is_on_dashboard_page() {
-        WebElement dashboardElement = webDriver.findElement(By.className(myAccContent));
-        Assertions.assertTrue(dashboardElement.isDisplayed(),
-                "User cannot register, or My Dashboard page is not displayed!");
+    @Then ("error message is displayed")
+    public void error_message_is_displayed() {
+        WebElement errorMessage = webDriver.findElement(By.xpath(error));
+        Assertions.assertTrue(errorMessage.isDisplayed(),
+                "Error message was not displayed");
     }
 }

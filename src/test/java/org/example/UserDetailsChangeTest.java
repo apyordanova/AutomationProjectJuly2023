@@ -23,7 +23,7 @@ public class UserDetailsChangeTest {
     private static final String myAccUrl = "https://practice.automationtesting.in/my-account/";
     public static final String userDetailsUrl = "https://practice.automationtesting.in/my-account/edit-account/";
     private static final String logButton = "//*[@id=\"customer_login\"]/div[1]/form/p[3]/input[3]";
-    private static final String error = "woocommerce-error";
+    private static final String error = "//*[@id=\"page-36\"]/div/div[1]/ul";
     private static final String accDetailsButton = "//*[@id=\"page-36\"]/div/div[1]/nav/ul/li[5]/a";
     private static final String accEmailField = "//*[@id=\"account_email\"]";
     private static final String saveChangesButton = "woocommerce-Button";
@@ -48,7 +48,7 @@ public class UserDetailsChangeTest {
             webDriver.findElement(By.xpath(accDetailsButton)).click();
             wait.until(ExpectedConditions.urlToBe(userDetailsUrl));
 
-            boolean loginError = webDriver.findElements(By.className(error)).size() > 0;
+            boolean loginError = webDriver.findElements(By.xpath(error)).size() > 0;
             if (loginError) {
                 throw new WebDriverException("The login was not successful");
             }

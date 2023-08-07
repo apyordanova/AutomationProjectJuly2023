@@ -72,9 +72,9 @@ public class LoginTest {
 
     @When("Login button is clickable")
     public void login_button_is_clickable() {
-        WebElement registerButton = webDriver.findElement(By.xpath(logButton));
+        WebElement logInButton = webDriver.findElement(By.xpath(logButton));
         WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.elementToBeClickable(registerButton));
+        wait.until(ExpectedConditions.elementToBeClickable(logInButton));
     }
 
     @Then("send input for Email address")
@@ -91,8 +91,8 @@ public class LoginTest {
 
     @Then("Click on Login button")
     public void click_on_login_button() {
-        WebElement registerButton = webDriver.findElement(By.xpath(logButton));
-        registerButton.click();
+        WebElement logInButton = webDriver.findElement(By.xpath(logButton));
+        logInButtonButton.click();
     }
 
     @Then("User is on My Account page")
