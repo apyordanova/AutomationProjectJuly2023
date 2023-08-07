@@ -94,14 +94,9 @@ public class RegistrationTest {
     }
 
     @Then ("User is on Dashboard page")
-    public void user_is_on_welcome_page() {
-        boolean myDashboardPage = true;
-        try {
-            WebElement dashboardElement = webDriver.findElement(By.className(myAccContent));
-        } catch (WebDriverException e) {
-            myDashboardPage = false;
-        }
-        Assertions.assertTrue(myDashboardPage,
-                "User is not registered and logged in, or My dashboard page is not displayed!");
+    public void user_is_on_dashboard_page() {
+        WebElement dashboardElement = webDriver.findElement(By.className(myAccContent));
+        Assertions.assertTrue(dashboardElement.isDisplayed(),
+                "User cannot register, or My Dashboard page is not displayed!");
     }
 }
