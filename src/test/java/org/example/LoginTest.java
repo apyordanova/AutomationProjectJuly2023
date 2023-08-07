@@ -92,7 +92,7 @@ public class LoginTest {
     @Then("Click on Login button")
     public void click_on_login_button() {
         WebElement logInButton = webDriver.findElement(By.xpath(logButton));
-        logInButtonButton.click();
+        logInButton.click();
     }
 
     @Then("User is on My Account page")
